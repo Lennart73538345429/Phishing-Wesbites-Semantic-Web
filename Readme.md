@@ -13,7 +13,7 @@
 
 ## Overview
 
- This project is designed to provide a comprehensive overview of the Phisphing website dataset in the paper .....
+ This project is designed to provide a comprehensive overview of the Phisphing website dataset in the paper.
 
 The dataset is available at the UCI Machine Learning Repository, and this project aims to facilitate its exploration and analysis.
 

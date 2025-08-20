@@ -1,0 +1,224 @@
+@prefix ex:   <http://example.org/phishing#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+##############################################################################
+# 1) KLASSEN
+##############################################################################
+
+ex:FeatureCategory a owl:Class ;
+  rdfs:label "Feature Category" ;
+  rdfs:comment "Oberklasse für Feature-Kategorien." .
+
+ex:FeatureType a owl:Class ;
+  rdfs:label "Feature Type" ;
+  rdfs:comment "Typ eines Features (z. B. 'url_length')." .
+
+ex:Website a owl:Class ;
+  rdfs:label "Website" .
+
+ex:PhishingWebsite a owl:Class ;
+  rdfs:subClassOf ex:Website ;
+  rdfs:label "Phishing Website" .
+
+ex:LegitimateWebsite a owl:Class ;
+  rdfs:subClassOf ex:Website ;
+  rdfs:label "Legitimate Website" .
+
+ex:Feature a owl:Class ;
+  rdfs:label "Feature" .
+
+ex:FeatureValue a owl:Class ;
+  rdfs:label "Feature Value" .
+
+##############################################################################
+# 2) UNTERKLASSEN DER KATEGORIE FeatureCategory
+##############################################################################
+
+ex:URL_Features a owl:Class ;
+  rdfs:subClassOf ex:FeatureCategory ;
+  rdfs:label "URL Features" .
+
+ex:DNS_Features a owl:Class ;
+  rdfs:subClassOf ex:FeatureCategory ;
+  rdfs:label "DNS Features" .
+
+ex:Content_Features a owl:Class ;
+  rdfs:subClassOf ex:FeatureCategory ;
+  rdfs:label "Content Features" .
+
+ex:Statistical_Features a owl:Class ;
+  rdfs:subClassOf ex:FeatureCategory ;
+  rdfs:label "Statistical Features" .
+
+##############################################################################
+# 3) FEATURE-TYP-INSTANZEN (nicht als Klassen!)
+##############################################################################
+
+ex:FeatureType_having_ip_address a ex:FeatureType ;
+  rdfs:label "FeatureType: having_ip_address" ;
+  ex:hasCategory ex:URL_Features .
+
+ex:FeatureType_url_length a ex:FeatureType ;
+  rdfs:label "FeatureType: url_length" ;
+  ex:hasCategory ex:URL_Features .
+
+ex:FeatureType_shortining_service a ex:FeatureType ;
+  rdfs:label "FeatureType: shortining_service" ;
+  ex:hasCategory ex:URL_Features .
+
+ex:FeatureType_having_at_symbol a ex:FeatureType ;
+  rdfs:label "FeatureType: having_at_symbol" ;
+  ex:hasCategory ex:URL_Features .
+
+ex:FeatureType_age_of_domain a ex:FeatureType ;
+  rdfs:label "FeatureType: age_of_domain" ;
+  ex:hasCategory ex:DNS_Features .
+
+ex:FeatureType_dnsrecord a ex:FeatureType ;
+  rdfs:label "FeatureType: dnsrecord" ;
+  ex:hasCategory ex:DNS_Features .
+
+ex:FeatureType_iframe a ex:FeatureType ;
+  rdfs:label "FeatureType: iframe" ;
+  ex:hasCategory ex:Content_Features .
+
+ex:FeatureType_popupwindow a ex:FeatureType ;
+  rdfs:label "FeatureType: popupwindow" ;
+  ex:hasCategory ex:Content_Features .
+
+ex:FeatureType_web_traffic a ex:FeatureType ;
+  rdfs:label "FeatureType: web_traffic" ;
+  ex:hasCategory ex:Statistical_Features .
+
+ex:FeatureType_page_rank a ex:FeatureType ;
+  rdfs:label "FeatureType: page_rank" ;
+  ex:hasCategory ex:Statistical_Features .
+
+##############################################################################
+# 4) PROPERTIES
+##############################################################################
+
+ex:hasCategory a owl:ObjectProperty ;
+  rdfs:domain ex:FeatureType ;
+  rdfs:range ex:FeatureCategory ;
+  rdfs:label "hasCategory" .
+
+ex:hasFeature a owl:ObjectProperty ;
+  rdfs:domain ex:Website ;
+  rdfs:range ex:Feature ;
+  rdfs:label "hasFeature" .
+
+ex:hasFeatureType a owl:ObjectProperty ;
+  rdfs:domain ex:Feature ;
+  rdfs:range ex:FeatureType ;
+  rdfs:label "hasFeatureType" .
+
+ex:hasValue a owl:ObjectProperty ;
+  rdfs:domain ex:Feature ;
+  rdfs:range ex:FeatureValue ;
+  rdfs:label "hasValue" .
+
+ex:score a owl:DatatypeProperty ;
+  rdfs:domain ex:FeatureValue ;
+  rdfs:range xsd:integer ;
+  rdfs:label "score" .
+
+##############################################################################
+# 5) STANDARD-WERTE FÜR FeatureValue
+##############################################################################
+
+ex:ScoreValue_Minus1 a ex:FeatureValue ;
+  rdfs:label "-1 (suspicious)" ;
+  ex:score -1 .
+
+
+ex:ScoreValue_One a ex:FeatureValue ;
+  rdfs:label "1 (legitimate)" ;
+  ex:score 1 .
+
+ex:Website_0_Feature_url_length
+    a ex:Feature ;
+    rdfs:label "Feature_url_length_von_Website_0" ;
+    ex:hasFeatureType ex:FeatureType_url_length ;
+    ex:hasValue ex:ScoreValue_Minus1 ;
+    ex:origin "CSV" .
+
+ex:FeatureType_url_length
+    a ex:FeatureType ;
+    rdfs:label "url_length" ;
+    ex:hasCategory ex:URL_Features .
+
+ex:ScoreValue_Minus1
+    a ex:FeatureValue ;
+    rdfs:label "-1 (suspicious)" ;
+    ex:score -1 .
+### Nur diese Properties explizit mit Typ versehen
+ex:score a owl:DatatypeProperty ;
+    rdfs:domain ex:FeatureValue ;
+    rdfs:range xsd:integer ;
+    rdfs:label "score" ;
+    rdfs:comment "Bewertungswert eines Features (-1, 0, 1)." .
+
+ex:origin a owl:DatatypeProperty ;
+    rdfs:domain ex:Feature ;
+    rdfs:range xsd:string ;
+    rdfs:label "origin" ;
+    rdfs:comment "" .
+
+
+
+
+
+
+
+
+
+
+
+
+##############################################################################
+# 6) ERWEITERTE PROPERTIES – analog zu geo:long etc.
+##############################################################################
+
+ex:featureScore a owl:DatatypeProperty ;
+  rdfs:domain ex:Feature ;
+  rdfs:range xsd:integer ;
+  rdfs:label "featureScore" ;
+  rdfs:comment "Numerischer Wert des Features (nur bei Score-basierten Features)." .
+
+ex:featureOrigin a owl:DatatypeProperty ;
+  rdfs:domain ex:Feature ;
+  rdfs:range xsd:string ;
+  rdfs:label "featureOrigin" ;
+  rdfs:comment "Herkunft der Daten, z. B. 'CSV', 'API', etc." .
+
+ex:evaluationDate a owl:DatatypeProperty ;
+  rdfs:domain ex:Website ;
+  rdfs:range xsd:dateTime ;
+  rdfs:label "evaluationDate" ;
+  rdfs:comment "Zeitpunkt der Phishing-Bewertung." .
+##############################################################################
+# 7) INSTANZEN MIT WERTEN & BEZIEHUNGEN
+##############################################################################
+
+ex:Website_0 a ex:PhishingWebsite ;
+  rdfs:label "Website_0" ;
+  ex:hasFeature ex:Website_0_Feature_url_length ;
+  ex:evaluationDate "2024-05-20T10:34:00"^^xsd:dateTime .
+
+ex:Website_0_Feature_url_length a ex:Feature ;
+  rdfs:label "Feature_url_length von Website_0" ;
+  ex:hasFeatureType ex:FeatureType_url_length ;
+  ex:hasValue ex:ScoreValue_Minus1 ;
+  ex:featureScore -1 ;
+  ex:featureOrigin "CSV"^^xsd:string .
+
+ex:FeatureType_url_length a ex:FeatureType ;
+  rdfs:label "url_length" ;
+  ex:hasCategory ex:URL_Features .
+
+ex:URL_Features a ex:FeatureCategory ;
+  rdfs:label "URL Features" .

@@ -1,0 +1,13 @@
+pandas
+numpy
+scikit-learn
+matplotlib
+seaborn
+tensorflow
+ucimlrepo # For repository access
+rdflib
+pyvis
+pyspark
+webvowl
+
+

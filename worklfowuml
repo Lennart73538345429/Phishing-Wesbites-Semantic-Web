@@ -1,0 +1,24 @@
+@startuml
+
+skinparam defaultFontSize 26
+skinparam titleFontSize 28
+
+
+|Data Acquisition|
+start
+:Fetch data from UCI ML Repository;
+
+|Data Transformation|
+:Parse CSV;
+:Convert data to Turtle (.ttl) format;
+:Merge ontology (onto.ttl) and instance phishing.ttl;
+
+|SPARQL|
+:Run SPARQL query;
+:Store query results in .ttl;
+
+|Evaluation|
+:Open .ttl in Protégé;
+:Visualize ontology in OntoGraf;
+stop
+@enduml

@@ -11,6 +11,18 @@
  please run the following imports in requrements.txt
  *pip install -r requirements.txt*
 
+## Quickstart
+git clone https://github.com/Lennart73538345429/Phishing-Wesbites-Semantic-Web
+pip install -r requirements.txt
+python main.py
+
+## Docker 
+run the follwing command *docker-compose -f virtuoso/Ontology/docker-compose.yml up -d
+*
+
+- to use the SPARQL Query Editor just go to http://localhost:8898/sparql
+
+
 ## Overview
 
  This project is designed to provide a comprehensive overview of the Phisphing website dataset in the paper.

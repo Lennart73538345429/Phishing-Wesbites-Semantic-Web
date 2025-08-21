@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  virtuoso:
+    image: tenforce/virtuoso
+    container_name: phishing_virtuoso
+    restart: unless-stopped
+    environment:
+      DBA_PASSWORD: "mind2025"
+      SPARQL_UPDATE: "true"
+
+      DEFAULT_GRAPH: "https://gitlab.dit.htwk-leipzig.de/semantic-web-project-25/mind"
+    volumes:
+
+      - .virtuoso/Ontology:/data
+      
+      - .virtuoso/Ontology/scripts:/opt/virtuoso-opensource/initdb.d
+    ports:
+      - "8898:8890"   #Endpoint -> http://localhost:8898/sparql
+      - "1118:1111"   

@@ -54,7 +54,7 @@ ex:Statistical_Features a owl:Class ;
   rdfs:label "Statistical Features" .
 
 ##############################################################################
-# 3) FEATURE-TYP-INSTANZEN (nicht als Klassen!)
+# 3) FEATURE-TYP-INSTANZEN 
 ##############################################################################
 
 ex:FeatureType_having_ip_address a ex:FeatureType ;

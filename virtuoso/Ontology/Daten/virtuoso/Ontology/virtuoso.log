@@ -1,0 +1,53 @@
+
+		Thu Aug 21 2025
+02:13:10 OpenLink Virtuoso Universal Server
+02:13:10 Version 07.20.3233-pthreads for Linux as of Jun 30 2021
+02:13:10 uses OpenSSL 1.0.2n  7 Dec 2017
+02:13:10 uses parts of PCRE, Html Tidy
+02:13:10 SQL Optimizer enabled (max 1000 layouts)
+02:13:10 Compiler unit is timed at 0.000181 msec
+02:13:11 Checkpoint started
+02:13:11 Roll forward started
+02:13:11 Roll forward complete
+02:13:11 Checkpoint started
+02:13:11 Checkpoint finished, log reused
+02:13:11 Checkpoint started
+02:13:11 Checkpoint finished, log reused
+02:13:11 Checkpoint started
+02:13:11 Checkpoint finished, log reused
+02:13:11 Checkpoint started
+02:13:11 Checkpoint finished, log reused
+02:13:11 Checkpoint started
+02:13:11 Checkpoint finished, log reused
+02:13:11 PL LOG: Installing Virtuoso Conductor version 1.00.8823 (DAV)
+02:13:11 PL LOG: Installing with dependencies Virtuoso Conductor version 1.00.8823/2021-06-30 12:30 (DAV)
+02:13:11 Checkpoint started
+02:13:11 Checkpoint finished, log reused
+02:13:12 Checkpoint started
+02:13:12 Checkpoint finished, log reused
+02:13:12 PL LOG: Installation with dependencies complete
+02:13:12 Checkpoint started
+02:13:12 Checkpoint finished, log reused
+02:13:12 HTTP/WebDAV server online at 27015
+02:13:12 Server online at 1111 (pid 20)
+02:13:12 Server received signal 15
+02:13:12 Initiating quick shutdown
+02:13:12 Server shutdown complete
+
+		Thu Aug 21 2025
+02:13:12 OpenLink Virtuoso Universal Server
+02:13:12 Version 07.20.3233-pthreads for Linux as of Jun 30 2021
+02:13:12 uses OpenSSL 1.0.2n  7 Dec 2017
+02:13:12 uses parts of PCRE, Html Tidy
+02:13:12 Database version 3126
+02:13:12 SQL Optimizer enabled (max 1000 layouts)
+02:13:13 Compiler unit is timed at 0.000070 msec
+02:13:14 Roll forward started
+02:13:14 Roll forward complete
+02:13:14 Checkpoint started
+02:13:14 Checkpoint finished, log reused
+02:13:14 HTTP/WebDAV server online at 8890
+02:13:14 Server online at 1111 (pid 1)
+02:28:18 Server received signal 15
+02:28:18 Initiating quick shutdown
+02:28:18 Server shutdown complete

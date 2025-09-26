@@ -37,7 +37,7 @@ The dataset is available at the UCI Machine Learning Repository, and this projec
 - **Ontology modeling in RDF/OWL** (semantic enrichment of phishing features)  
 - **SPARQL queries** for knowledge extraction  
 - **Machine learning classification** (Support Vector Machine)  
-- **SparqL evaluation** for query comparison  
+- **Sparql evaluation** for query comparison  
 
 
 ## Files
@@ -65,4 +65,4 @@ Virtusoso Directory
 ## Conclusions
 - **Semantic modeling (RDF/OWL)** helps to group phishing indicators into categories and enables **SPARQL reasoning**.  
 - **Machine learning (SVM)** achieves high classification accuracy for phishing detection.  
-- **Spark queries** validate ML results in a scalable, distributed way.  
+- **Sparql queries** validate ML results in a scalable, distributed way.  

@@ -1,11 +1,11 @@
-# Phisphing Website 
+# Phishing Website 
 
 
 **Author:** Lennart Zipfel, INB-3  
 **Dataset:** [UCI Phishing Websites Dataset](https://archive.ics.uci.edu/dataset/327/phishing+websites)  
 **Reference Paper:** [An Assessment of Features Related to Phishing Using Machine Learning Algorithms](https://www.semanticscholar.org/paper/0c0ff58063f4e078714ea74f112bc709ba9fed06)  
 
-# This is the README for the Phisphing website project.
+# This is the README for the Phishing website project.
 
 ## Requirements
  please run the following imports in requrements.txt
@@ -22,9 +22,9 @@ run the follwing command *sudo docker compose -f docker-compose.yml up -d*
 - to use the SPARQL Query Editor just go to http://localhost:8898/sparql
 
 ## Example Queries for Interactive SQL
-*
-SPARQL SELECT DISTINCT ?class (COUNT(?s) AS ?count) FROM <https://gitlab.dit.htwk-leipzig.de/semantic-web-project-25/mind> WHERE { ?s a ?class } GROUP BY ?class ORDER BY DESC(?count);
-*
+
+*SPARQL SELECT DISTINCT ?class (COUNT(?s) AS ?count) FROM <https://gitlab.dit.htwk-leipzig.de/semantic-web-project-25/mind> WHERE { ?s a ?class } GROUP BY ?class ORDER BY DESC(?count);*
+
 
 
 ## Overview

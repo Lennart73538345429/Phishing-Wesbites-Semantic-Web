@@ -37,7 +37,7 @@ The dataset is available at the UCI Machine Learning Repository, and this projec
 - **Ontology modeling in RDF/OWL** (semantic enrichment of phishing features)  
 - **SPARQL queries** for knowledge extraction  
 - **Machine learning classification** (Support Vector Machine)  
-- **Spark SQL evaluation** for query comparison  
+- **SparqL evaluation** for query comparison  
 
 
 ## Files

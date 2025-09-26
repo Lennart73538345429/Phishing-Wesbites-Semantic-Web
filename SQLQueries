@@ -1,0 +1,62 @@
+PREFIX ex:   <http://example.org/phishing#>
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+
+## 1. Alle Websites mit ihren Features ##
+SELECT ?site ?feature ?featureType
+WHERE {
+  ?site a ex:Website ;
+        ex:hasFeature ?feature .
+  ?feature ex:hasFeatureType ?featureType .
+}
+
+## 2. Alle Phishing-Websites ##
+SELECT ?site
+WHERE {
+  ?site a ex:PhishingWebsite .
+}
+
+## 3. Alle legitimen Websites ##
+SELECT ?site
+WHERE {
+  ?site a ex:LegitimateWebsite .
+}
+
+## 4. Feature-Kategorien und ihre Feature-Typen ##
+SELECT ?category ?featureType
+WHERE {
+  ?featureType a ex:FeatureType ;
+               ex:hasCategory ?category .
+}
+
+
+## 5. Durchschnittlicher Score pro Feature-Typ ##
+SELECT ?featureType (AVG(?score) AS ?avgScore)
+WHERE {
+  ?f a ex:Feature ;
+     ex:hasFeatureType ?featureType ;
+     ex:hasValue ?val .
+  ?val ex:score ?score .
+}
+GROUP BY ?featureType
+ORDER BY DESC(?avgScore)
+
+## 6. Anzahl Features pro Kategorie ##
+SELECT ?category (COUNT(?featureType) AS ?nFeatures)
+WHERE {
+  ?featureType a ex:FeatureType ;
+               ex:hasCategory ?category .
+}
+GROUP BY ?category
+
+
+## 7. 5 Features mit den meisten Vorkommen ##
+SELECT ?featureType (COUNT(?f) AS ?count)
+WHERE {
+  ?f a ex:Feature ;
+     ex:hasFeatureType ?featureType .
+}
+GROUP BY ?featureType
+ORDER BY DESC(?count)
+LIMIT 5

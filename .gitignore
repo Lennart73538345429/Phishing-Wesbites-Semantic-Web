@@ -1,0 +1,13 @@
+
+virtuoso/Ontology/.virtuoso/
+virtuoso/Ontology/virtuoso.db
+virtuoso/Ontology/data/virtuoso.db
+virtuoso/Ontology/virtuoso.*
+*.db
+*.log
+*.trx
+*.pxa
+*.lck
+
+*.pyc
+__pycache__/

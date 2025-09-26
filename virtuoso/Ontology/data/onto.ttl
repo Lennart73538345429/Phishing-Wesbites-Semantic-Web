@@ -1,0 +1,284 @@
+@prefix ex:   <http://example.org/phishing#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dbr:  <http://dbpedia.org/resource/> .
+
+##############################################################################
+# Ontology header
+##############################################################################
+<http://example.org/phishing>
+    a owl:Ontology ;
+    rdfs:label "Phishing Websites Ontology" ;
+    owl:versionInfo "1.3.0" ;
+    rdfs:comment "external resources (DBpedia) for 5-star Linked Data" .
+
+##############################################################################
+# 1) KLASSEN
+##############################################################################
+
+ex:FeatureCategory a owl:Class ;
+  rdfs:label "Feature Category" ;
+  rdfs:comment "Oberklasse für Feature-Kategorien." .
+
+ex:FeatureType a owl:Class ;
+  rdfs:label "Feature Type" ;
+  rdfs:comment "Typ eines Features (z. B. 'url_length')." .
+
+ex:Website a owl:Class ;
+  rdfs:label "Website" .
+
+ex:PhishingWebsite a owl:Class ;
+  rdfs:subClassOf ex:Website ;
+  rdfs:label "Phishing Website" .
+
+ex:LegitimateWebsite a owl:Class ;
+  rdfs:subClassOf ex:Website ;
+  rdfs:label "Legitimate Website" .
+
+ex:Feature a owl:Class ;
+  rdfs:label "Feature" .
+
+ex:FeatureValue a owl:Class ;
+  rdfs:label "Feature Value" .
+
+##############################################################################
+# 2) UNTERKLASSEN DER KATEGORIE FeatureCategory
+##############################################################################
+
+ex:URL_Features a owl:Class ;
+  rdfs:subClassOf ex:FeatureCategory ;
+  rdfs:label "URL Features" .
+
+ex:DNS_Features a owl:Class ;
+  rdfs:subClassOf ex:FeatureCategory ;
+  rdfs:label "DNS Features" .
+
+ex:Content_Features a owl:Class ;
+  rdfs:subClassOf ex:FeatureCategory ;
+  rdfs:label "Content Features" .
+
+ex:Statistical_Features a owl:Class ;
+  rdfs:subClassOf ex:FeatureCategory ;
+  rdfs:label "Statistical Features" .
+
+##############################################################################
+# 3) FEATURE-Instanzen + Externe Links
+##############################################################################
+
+# URL / Struktur
+ex:FeatureType_having_ip_address
+    a ex:FeatureType ; rdfs:label "having_ip_address" ;
+    ex:hasCategory ex:URL_Features ;
+    skos:closeMatch dbr:IP_address .
+
+ex:FeatureType_url_length
+    a ex:FeatureType ; rdfs:label "url_length" ;
+    ex:hasCategory ex:URL_Features ;
+    skos:closeMatch dbr:URL .
+
+ex:FeatureType_shortining_service
+    a ex:FeatureType ; rdfs:label "shortining_service" ;
+    ex:hasCategory ex:URL_Features ;
+    skos:closeMatch dbr:URL_shortening .
+
+ex:FeatureType_having_at_symbol
+    a ex:FeatureType ; rdfs:label "having_at_symbol" ;
+    ex:hasCategory ex:URL_Features ;
+    skos:closeMatch dbr:At_sign .
+
+ex:FeatureType_double_slash_redirecting
+    a ex:FeatureType ; rdfs:label "double_slash_redirecting" ;
+    ex:hasCategory ex:URL_Features ;
+    skos:closeMatch dbr:URL_redirection .
+
+ex:FeatureType_prefix_suffix
+    a ex:FeatureType ; rdfs:label "prefix_suffix" ;
+    ex:hasCategory ex:URL_Features ;
+    skos:closeMatch dbr:Domain_name .
+
+ex:FeatureType_having_sub_domain
+    a ex:FeatureType ; rdfs:label "having_sub_domain" ;
+    ex:hasCategory ex:URL_Features ;
+    skos:closeMatch dbr:Subdomain .
+
+ex:FeatureType_abnormal_url
+    a ex:FeatureType ; rdfs:label "abnormal_url" ;
+    ex:hasCategory ex:URL_Features ;
+    rdfs:seeAlso dbr:Phishing .
+
+ex:FeatureType_redirect
+    a ex:FeatureType ; rdfs:label "redirect" ;
+    ex:hasCategory ex:URL_Features ;
+    skos:closeMatch dbr:URL_redirection .
+
+ex:FeatureType_https_token
+    a ex:FeatureType ; rdfs:label "https_token" ;
+    ex:hasCategory ex:URL_Features ;
+    skos:closeMatch dbr:HTTPS .
+
+ex:FeatureType_favicon
+    a ex:FeatureType ; rdfs:label "favicon" ;
+    ex:hasCategory ex:URL_Features ;
+    skos:closeMatch dbr:Favicon .
+
+ex:FeatureType_port
+    a ex:FeatureType ; rdfs:label "port" ;
+    ex:hasCategory ex:URL_Features ;
+    skos:closeMatch dbr:TCP_port .
+
+ex:FeatureType_sslfinal_state
+    a ex:FeatureType ; rdfs:label "sslfinal_state" ;
+    ex:hasCategory ex:URL_Features ;
+    rdfs:seeAlso dbr:Transport_Layer_Security .
+
+ex:FeatureType_domain_registration_length
+    a ex:FeatureType ; rdfs:label "domain_registration_length" ;
+    ex:hasCategory ex:URL_Features ;
+    rdfs:seeAlso dbr:Domain_name_registration .
+
+# DNS
+ex:FeatureType_age_of_domain
+    a ex:FeatureType ; rdfs:label "age_of_domain" ;
+    ex:hasCategory ex:DNS_Features ;
+    rdfs:seeAlso dbr:WHOIS .
+
+ex:FeatureType_dnsrecord
+    a ex:FeatureType ; rdfs:label "dnsrecord" ;
+    ex:hasCategory ex:DNS_Features ;
+    skos:closeMatch dbr:DNS_record .
+
+# Content / Verhalten
+ex:FeatureType_request_url
+    a ex:FeatureType ; rdfs:label "request_url" ;
+    ex:hasCategory ex:Content_Features ;
+    rdfs:seeAlso dbr:Hotlinking .
+
+ex:FeatureType_url_of_anchor
+    a ex:FeatureType ; rdfs:label "url_of_anchor" ;
+    ex:hasCategory ex:Content_Features ;
+    rdfs:seeAlso dbr:Anchor_text .
+
+ex:FeatureType_links_in_tags
+    a ex:FeatureType ; rdfs:label "links_in_tags" ;
+    ex:hasCategory ex:Content_Features ;
+    rdfs:seeAlso dbr:Script_element .
+
+ex:FeatureType_sfh
+    a ex:FeatureType ;
+    rdfs:label "sfh" ;
+    ex:hasCategory ex:Content_Features ;
+    rdfs:seeAlso <http://dbpedia.org/resource/Form_(HTML)> .
+
+
+ex:FeatureType_submitting_to_email
+    a ex:FeatureType ; rdfs:label "submitting_to_email" ;
+    ex:hasCategory ex:Content_Features ;
+    rdfs:seeAlso dbr:Mailto .
+
+ex:FeatureType_on_mouseover
+    a ex:FeatureType ; rdfs:label "on_mouseover" ;
+    ex:hasCategory ex:Content_Features ;
+    rdfs:seeAlso dbr:Mouseover .
+
+ex:FeatureType_rightclick
+    a ex:FeatureType ; rdfs:label "rightclick" ;
+    ex:hasCategory ex:Content_Features ;
+    rdfs:seeAlso dbr:Context_menu .
+
+ex:FeatureType_popupwindow
+    a ex:FeatureType ; rdfs:label "popupwindow" ;
+    ex:hasCategory ex:Content_Features ;
+    skos:closeMatch dbr:Pop-up_ad .
+
+ex:FeatureType_iframe
+    a ex:FeatureType ; rdfs:label "iframe" ;
+    ex:hasCategory ex:Content_Features ;
+    rdfs:seeAlso dbr:IFrame .
+
+# Statistisch / Reputation
+ex:FeatureType_web_traffic
+    a ex:FeatureType ; rdfs:label "web_traffic" ;
+    ex:hasCategory ex:Statistical_Features ;
+    rdfs:seeAlso dbr:Web_analytics .
+
+ex:FeatureType_page_rank
+    a ex:FeatureType ; rdfs:label "page_rank" ;
+    ex:hasCategory ex:Statistical_Features ;
+    skos:closeMatch dbr:PageRank .
+
+ex:FeatureType_google_index
+    a ex:FeatureType ; rdfs:label "google_index" ;
+    ex:hasCategory ex:Statistical_Features ;
+    rdfs:seeAlso dbr:Web_indexing .
+
+ex:FeatureType_links_pointing_to_page
+    a ex:FeatureType ; rdfs:label "links_pointing_to_page" ;
+    ex:hasCategory ex:Statistical_Features ;
+    skos:closeMatch dbr:Backlink .
+
+ex:FeatureType_statistical_report
+    a ex:FeatureType ; rdfs:label "statistical_report" ;
+    ex:hasCategory ex:Statistical_Features ;
+    rdfs:seeAlso dbr:PhishTank , dbr:Anti-Phishing_Working_Group .
+
+##############################################################################
+# 4) PROPERTIES
+##############################################################################
+
+ex:hasCategory a owl:ObjectProperty ;
+  rdfs:domain ex:FeatureType ;
+  rdfs:range  ex:FeatureCategory ;
+  rdfs:label "hasCategory" .
+
+ex:hasFeature a owl:ObjectProperty ;
+  rdfs:domain ex:Website ;
+  rdfs:range  ex:Feature ;
+  rdfs:label "hasFeature" .
+
+ex:hasFeatureType a owl:ObjectProperty ;
+  rdfs:domain ex:Feature ;
+  rdfs:range  ex:FeatureType ;
+  rdfs:label "hasFeatureType" .
+
+ex:hasValue a owl:ObjectProperty ;
+  rdfs:domain ex:Feature ;
+  rdfs:range  ex:FeatureValue ;
+  rdfs:label "hasValue" .
+
+# Datentyp-Properties
+ex:score a owl:DatatypeProperty ;
+  rdfs:domain ex:FeatureValue ;
+  rdfs:range  xsd:integer ;
+  rdfs:label "score" ;
+  rdfs:comment "Bewertungswert eines Features (-1, 0, 1)." .
+
+ex:origin a owl:DatatypeProperty ;
+  rdfs:domain ex:Feature ;
+  rdfs:range  xsd:string ;
+  rdfs:label "origin" ;
+  rdfs:comment "Datenherkunft, z. B. 'CSV'." .
+
+ex:rawValue a owl:DatatypeProperty ;
+  rdfs:domain ex:FeatureValue ;
+  rdfs:range  xsd:string ;
+  rdfs:label "rawValue" ;
+  rdfs:comment "Nicht-numerischer Rohwert, falls ein Score nicht parsbar ist." .
+
+##############################################################################
+# 5) STANDARD-WERTE FÜR FeatureValue
+##############################################################################
+
+ex:ScoreValue_Minus1 a ex:FeatureValue ;
+  rdfs:label "-1 (suspicious)" ;
+  ex:score -1 .
+
+ex:ScoreValue_Zero a ex:FeatureValue ;
+  rdfs:label "0 (neutral)" ;
+  ex:score 0 .
+
+ex:ScoreValue_One a ex:FeatureValue ;
+  rdfs:label "1 (legitimate)" ;
+  ex:score 1 .

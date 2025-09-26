@@ -1,0 +1,20 @@
+services:
+  virtuoso:
+    image: tenforce/virtuoso
+    container_name: phishing_virtuoso
+    restart: unless-stopped
+    environment:
+      DBA_PASSWORD: "mind2025"
+      SPARQL_UPDATE: "true"
+
+      DEFAULT_GRAPH: "https://gitlab.dit.htwk-leipzig.de/semantic-web-project-25/mind"
+      VIRT_Parameters_DirsAllowed: "., /data, /dumps, /opt/virtuoso-opensource/initdb.d"
+      VIRT_Parameters_TempAllowed: "/tmp"
+    volumes:
+
+      - ./virtuoso/Ontology/data:/data
+      
+      - .virtuoso/Ontology/scripts:/opt/virtuoso-opensource/initdb.d
+    ports:
+      - "8898:8890"  
+      - "1118:1111"   
